@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a0a2e">
+  <title>Happy Birthday, Selina! 💜</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+*{box-sizing:border-box}
+:root{--night:#1a0a2e;--night2:#2d1545;--pink:#f9a8d4;--hot:#ff4d94;--lavender:#c084fc;--pale:#e9d5ff;--lightpink:#ffe6f2}
+html{scroll-behavior:smooth}
+body{margin:0;padding:0;font-family:'Poppins',sans-serif;background:var(--night);color:#fff;overflow-x:hidden}
+.hidden{display:none!important}
+.page{min-height:100vh;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 20px;position:relative;isolation:isolate}
+.glass-page{background:linear-gradient(135deg,var(--night),var(--night2));overflow:hidden}
+.stars-layer{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.star{position:absolute;background:#fff;border-radius:50%;opacity:.8}
+.glass-card{max-width:620px;width:100%;padding:42px 36px;background:rgba(255,255,255,.05);border:1px solid rgba(249,168,212,.3);border-radius:32px;backdrop-filter:blur(12px);box-shadow:0 20px 60px rgba(236,72,153,.15);position:relative;z-index:2;animation:slideUpFade 1s ease-out}
+.welcome-card{padding:60px 24px;cursor:pointer}
+.dizzy-symbol,.astronaut-symbol{font-size:clamp(76px,15vw,105px);line-height:1;margin-bottom:20px;filter:drop-shadow(0 10px 15px #0005);animation:floatMendalle 3s ease-in-out infinite}
+.eyebrow{font-size:11px;letter-spacing:3px;color:var(--lavender);font-weight:600}
+.click-text{font-family:'Dancing Script',cursive;font-size:clamp(2.2rem,8vw,3.2rem);color:#ff80ab;margin:12px 0;text-shadow:0 0 15px #ff80ab66;animation:btnPulse 1.5s infinite}
+.soft-copy{color:#cbb8e8;font-size:.85rem;letter-spacing:1px}
+.note-title{font-family:'Dancing Script',cursive;font-size:clamp(27px,6vw,36px);color:var(--pink);margin-bottom:22px;text-shadow:0 0 20px #f9a8d480}
+.note-body{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,4vw,18px);line-height:2;color:var(--pale);white-space:pre-line;margin-bottom:30px}
+.note-body strong{font-family:'Poppins',sans-serif;font-size:13px;font-style:normal;color:var(--pink)}
+.letter-btn{background:linear-gradient(135deg,#ec4899,#c084fc);color:#fff;border:0;padding:14px 28px;width:100%;max-width:350px;border-radius:50px;font-family:'Dancing Script',cursive;font-size:24px;cursor:pointer;box-shadow:0 10px 30px #ec489980;animation:btnPulse 1.5s infinite}
+.timer-caption{color:#cbb8e8;font-size:.85rem;letter-spacing:1px}
+.timer-page{background:linear-gradient(to bottom,#0f0c29,#302b63,#24243e);color:#fff;overflow:hidden}
+.moon{position:absolute;top:5vh;right:6vw;width:75px;height:75px;background:#fff9c4;border-radius:50%;box-shadow:0 0 30px #fff59d,0 0 70px #fff59d}
+.content-wrapper{z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;max-width:800px}
+.magical-text{font-family:'Dancing Script',cursive;font-size:clamp(1.5rem,5vw,2.3rem);color:#ffd1dc;margin:5px 0 12px}
+.sub-text{font-size:.8rem;letter-spacing:2px;color:#b39ddb;margin-bottom:32px;text-transform:uppercase}
+.countdown-title{font-family:'Dancing Script',cursive;font-size:clamp(1.9rem,6vw,3rem);color:#ff80ab;margin-bottom:26px}
+#timer-boxes{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;width:100%}
+.time-box{background:#ffffff08;border:1px solid #ffffff26;border-radius:15px;padding:18px 14px;min-width:clamp(66px,15vw,88px);box-shadow:0 8px 32px #0005;backdrop-filter:blur(4px)}
+.time-number{font-size:clamp(1.8rem,6vw,2.8rem);font-weight:700;line-height:1;margin-bottom:7px}
+.time-label{font-size:.65rem;letter-spacing:1.5px;color:#b39ddb;text-transform:uppercase}
+.timer-caption{margin-top:24px}
+#secret-dot{position:absolute;bottom:10px;right:10px;width:14px;height:14px;border:0;border-radius:50%;padding:0;background:#ffffff0d;cursor:pointer;z-index:10}
+#secret-dot:hover,#secret-dot:focus-visible{background:#ffffff55;outline:2px solid #fff}
+body.cake-wait{overflow:hidden}
+.btn{padding:14px 26px;font-size:1rem;background:var(--hot);color:#fff;border:0;border-radius:25px;cursor:pointer;margin-top:25px;z-index:5;font-family:'Poppins',sans-serif;transition:transform .3s,background .3s}
+.btn:hover{background:#ff1a75;transform:scale(1.04)}
+.dark-room{background:#050505!important;color:#fff;transition:background 1.5s ease}
+.script-heading{font-family:'Dancing Script',cursive;font-size:clamp(2rem,6vw,2.8rem);color:var(--pink)}
+.party-symbol{font-size:clamp(4rem,15vw,6rem);margin:10px 0;animation:floatMendalle 3s infinite}
+.cake-message{font-family:'Dancing Script',cursive;font-size:clamp(2rem,6vw,3rem);color:var(--hot);max-width:900px}
+.cake-container{margin:38px 0 20px;cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center}
+#page2.cake-locked{height:100vh;min-height:100vh;overflow:hidden;padding:18px 20px}
+#page2.cake-locked .party-symbol{margin:0 0 8px}
+#page2.cake-locked .cake-container{margin:14px 0}
+#page2.cake-locked .cake{font-size:clamp(100px,22vw,150px)}
+#page2.cake-locked .cake-message{margin:8px 0}
+.cake{font-size:clamp(110px,25vw,180px);line-height:1.2;transition:transform .3s;user-select:none}
+.cake-container:hover .cake{transform:scale(1.05)}
+.cake-container.cut .cake{animation:cakeCut .7s ease-in-out}
+.cake-greeting{color:#f9a8d4;font-weight:700;font-size:1.2rem}
+.music-credit,.music-status{font-size:.75rem;color:#cbb8e8}
+.music-credit a{color:var(--pink)}
+.candles{display:flex;justify-content:center;gap:22px;position:absolute;top:3px;width:100%;z-index:2}
+.candle{width:13px;height:42px;background:linear-gradient(#fff,#ffeb3b);border-radius:4px;position:relative}
+.flame{width:17px;height:25px;background:#ff9800;border-radius:50% 50% 20% 20%;position:absolute;top:-24px;left:-2px;box-shadow:0 0 20px #ffeb3b,0 0 35px #ff9800;animation:flicker .5s infinite alternate}
+.flame.blown-out{opacity:0;box-shadow:none;animation:none}
+.gallery-heading{font-family:'Dancing Script',cursive;color:var(--pink);font-size:clamp(2rem,6vw,3rem);margin:40px 0 5px}
+.gallery-hint{color:#cbb8e8;font-size:.85rem}
+.slideshow-container{width:min(850px,90vw);aspect-ratio:16/9;max-height:440px;position:relative;margin:25px auto 18px;border:5px solid #fff;border-radius:12px;overflow:hidden;background:#2d1545;box-shadow:0 5px 20px #0008}
+.slideshow-container img{width:100%;height:100%;object-fit:contain;background:#170b25}
+.slide-placeholder{height:100%;display:grid;place-items:center;color:#e9d5ff;font-family:'Dancing Script',cursive;font-size:2rem}
+.slide-control{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border:0;border-radius:50%;background:#1a0a2ecc;color:#fff;font-size:30px;cursor:pointer;z-index:3}
+.slide-control.prev{left:12px}.slide-control.next{right:12px}
+.slide-counter{position:absolute;right:12px;bottom:10px;padding:5px 9px;border-radius:12px;background:#1a0a2ecc;color:#fff;font-size:12px}
+.gallery-grid{width:min(1180px,94vw);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),185px));justify-content:center;gap:14px;margin:20px auto}
+.gallery-grid img{display:block;width:100%;height:220px;object-fit:cover;border:5px solid #fff;border-radius:8px;box-shadow:0 5px 15px #0006}
+.memories-page{padding:55px 5vw;align-items:center;background:var(--lightpink);color:#333}
+.page-heading{font-family:'Dancing Script',cursive;color:var(--hot);font-size:clamp(2.4rem,7vw,3.6rem);margin:0 0 10px}
+.scroll-hint{color:#d81b60;font-weight:600;margin:0 0 20px}
+.memory-row{display:flex;align-items:center;justify-content:space-between;margin:35px 0;gap:30px;width:100%;max-width:950px;opacity:0;transform:translateY(25px);transition:opacity .8s,transform .8s}
+.memory-row.visible{opacity:1;transform:translateY(0);animation:memoryReveal .8s ease-out both}
+.memory-row.reverse{flex-direction:row-reverse;text-align:right}
+.memory-img{flex:1;width:100%;max-width:420px;aspect-ratio:4/3;max-height:310px;background:#ffd1dc;border-radius:15px;box-shadow:0 5px 15px #0002;object-fit:cover}
+.memory-text{flex:1;font-size:1rem;line-height:1.8;color:#444;min-width:240px}
+.memory-text h2{font-family:'Dancing Script',cursive;color:#d81b60;font-size:2rem}
+.final-wish{font-family:'Dancing Script',cursive;font-size:clamp(2.7rem,8vw,4rem);color:var(--hot);margin:40px 0 0}
+.signature{font-family:'Playfair Display',serif;font-style:italic;color:#7c2d62;font-size:1.2rem}
+#pop-blast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9rem;z-index:1000;pointer-events:none}
+.confetti{position:fixed;top:-10px;z-index:9999;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(100vh) rotate(720deg)}}
+@keyframes floatMendalle{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-18px) rotate(4deg)}}
+@keyframes flicker{from{transform:scale(1);opacity:.9}to{transform:scale(1.1);opacity:1}}
+@keyframes twinkle{from{opacity:.25;transform:scale(.8)}to{opacity:1;transform:scale(1.2)}}
+@keyframes btnPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes slideUpFade{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popAnim{0%{transform:translate(-50%,-50%) scale(0);opacity:1}50%{transform:translate(-50%,-50%) scale(1.5);opacity:1}100%{transform:translate(-50%,-50%) scale(2.5);opacity:0}}
+@keyframes cakeCut{0%,100%{transform:rotate(0) scale(1)}30%{transform:rotate(-12deg) scale(1.15)}65%{transform:rotate(12deg) scale(1.15)}}
+@keyframes memoryReveal{from{opacity:0;transform:translateY(35px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:768px){.moon{width:58px;height:58px;top:3vh}.memory-row,.memory-row.reverse{flex-direction:column;text-align:center;gap:12px}.memory-img{max-width:100%}.glass-card{padding:30px 20px}.slideshow-container{aspect-ratio:4/3}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.memory-text{min-width:0}.memories-page{padding:45px 6vw}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+  </style>
+</head>
+<body>
+  <audio id="bday-audio" preload="none" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Happy_Birthday_Wikipedia_2016_-_Flavio_Colusso_-_WM-IT_%28uncut_audio%29.oga"></audio>
+  <div id="pop-blast" class="hidden" aria-hidden="true">🎉😵‍💫🎉</div>
+
+  <!-- Opening screen -->
+  <section id="page-click" class="page glass-page">
+    <div id="stars-page-click" class="stars-layer"></div>
+    <div class="glass-card welcome-card" id="welcome-card" role="button" tabindex="0" aria-label="Open birthday surprise">
+      <div class="dizzy-symbol">😵‍💫</div>
+      <p class="eyebrow">A LITTLE SURPRISE FOR YOU</p>
+      <div class="click-text">Click Here, mendally...!</div>
+      <p class="soft-copy">Made with love by your Anna 💗</p>
+    </div>
+  </section>
+
+  <!-- Personal note -->
+  <section id="page0" class="page glass-page hidden">
+    <div id="stars-page0" class="stars-layer"></div>
+    <div class="glass-card">
+      <div class="note-title">A little note before your gift 🎁</div>
+      <div class="note-body">
+        Hey Selina… 💜
+
+        you told that u dont need any <gifts class=""></gifts>
+        but know how much I wanted to make your birthday special this year. So, I made this little surprise for you.
+
+        Read everything, don't skip anything!
+        Pudichirundhaalum sari, cringe-ah irundhaalum sari…
+        This one is from your Anna. 😂
+
+        <strong>Keep your volume on for the full experience 🔊</strong>
+      </div>
+      <button class="letter-btn" id="note-next">Now open your surprise ✨</button>
+    </div>
+  </section>
+
+  <!-- Countdown -->
+  <section id="page1" class="page timer-page hidden">
+    <div class="moon"></div>
+    <button id="secret-dot" title="Open the surprise" aria-label="Open the surprise"></button>
+    <div id="stars-page1" class="stars-layer"></div>
+    <div class="content-wrapper">
+      <div class="astronaut-symbol">😵‍💫🌙</div>
+      <div class="magical-text">✨ Your day is going to begin with love, Mendalle & magic ✨</div>
+      <div class="sub-text">A special surprise is waiting for you</div>
+      <div class="countdown-title" id="countdown-title">Counting down to your birthday…</div>
+      <div id="timer-boxes">
+        <div class="time-box"><div class="time-number" id="days-val">00</div><div class="time-label">Days</div></div>
+        <div class="time-box"><div class="time-number" id="hours-val">00</div><div class="time-label">Hours</div></div>
+        <div class="time-box"><div class="time-number" id="mins-val">00</div><div class="time-label">Minutes</div></div>
+        <div class="time-box"><div class="time-number" id="secs-val">00</div><div class="time-label">Seconds</div></div>
+      </div>
+      <p class="timer-caption" id="timer-caption">17 November · 12:00 AM · Your special day</p>
+    </div>
+  </section>
+
+  <!-- Birthday celebration -->
+  <section id="page2" class="page dark-room cake-locked hidden">
+    <div id="light-controls">
+      <p class="script-heading">A little darkness before all your sparkle…</p>
+      <button id="light-switch" class="btn">Turn on the Lights 💡</button>
+    </div>
+    <div id="party-content" class="hidden">
+      <div class="party-symbol">😵‍💫💗</div>
+      <h1 id="cake-msg" class="cake-message">Make a wish, Selina! Touch the cake to blow out the candles 🎂</h1>
+      <div class="cake-container" id="cake-container" role="button" tabindex="0" aria-label="Touch the cake">
+        <div class="candles" id="candles-container">
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+        </div>
+        <div class="cake" id="cake-emoji">🎂</div>
+        <div class="cake-greeting">Happy Birthday, Selina!</div>
+      </div>
+
+      <div id="gallery-content" class="hidden">
+      <h2 class="gallery-heading">A little gallery of you & our memories 💜</h2>
+      <p class="gallery-hint">A few birthday memories to start—add your own photos too!</p>
+      <div class="slideshow-container" id="slideshow-container">
+        <div class="slide-placeholder">Your memories will appear here ✨</div>
+        <button class="slide-control prev" id="slide-prev" aria-label="Previous picture">‹</button>
+        <button class="slide-control next" id="slide-next" aria-label="Next picture">›</button>
+        <span class="slide-counter" id="slide-counter"></span>
+      </div>
+      <div class="gallery-grid" aria-label="More birthday memories">
+        <img src="111.png" alt="Birthday memory 1" width="600" height="800" loading="lazy">
+        <img src="222.png" alt="Birthday memory 2" width="600" height="800" loading="lazy">
+        <img src="333.png" alt="Birthday memory 3" width="600" height="800" loading="lazy">
+        <img src="444.png" alt="Birthday memory 4" width="600" height="800" loading="lazy">
+        <img src="555.png" alt="Birthday memory 5" width="600" height="800" loading="lazy">
+        <img src="666.png" alt="Birthday memory 6" width="600" height="800" loading="lazy">
+      </div>
+      <p class="music-credit">Birthday music: Flavio Colusso, via <a href="https://commons.wikimedia.org/wiki/File:Happy_Birthday_Wikipedia_2016_-_Flavio_Colusso_-_WM-IT_(uncut_audio).oga" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> (CC BY-SA 4.0).</p>
+      <p id="music-status" class="music-status" role="status" aria-live="polite"></p>
+      <button id="scroll-btn" class="btn">Read a message from your babblu💝❤️ ⬇️</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Messages -->
+  <section id="page3" class="page memories-page hidden">
+    <h1 class="page-heading">A Special Message For You, Selina 💗</h1>
+    <p class="scroll-hint">A few things I want you to remember…</p>
+
+    <div class="memory-row">
+      <img class="memory-img" src="1.png" alt="Friends celebrating together" loading="lazy">
+      <div class="memory-text"><h2>Always choose happiness</h2><p>Happy-ah iru. Past-ah pathi romba yosikkaadha. Irukura varaikkum happy-ah, jolly-ah iru. You deserve peaceful and genuine happiness.</p></div>
+    </div>
+    <div class="memory-row reverse">
+      <img class="memory-img" src="2.png" alt="A colorful birthday celebration" loading="lazy">
+      <div class="memory-text"><h2>Know your worth</h2><p>Yaarayum blindly romba nambaadha. Un value enna-nu unakku theriyanum. Always respect yourself and never allow anyone to make you feel less..  aven ethu solitan, evan etha panitan nu irukatha ...</p></div>
+    </div>
+    <div class="memory-row">
+      <img class="memory-img" src="3.png" alt="A lively night out with friends" loading="lazy">
+      <div class="memory-text"><h2>Make your dreams happen</h2><p>be the strong woman as like as ur mom, be bold, Un dreams ellame one by one achieve pannu. I'll always be happy to see you succeed.but life la choose panra person ha crt ha choose pannu.. no one will come with u till the end </p></div>
+    </div>
+    <div class="memory-row reverse">
+      <img class="memory-img" src="4.png" alt="Friends sharing a special occasion" loading="lazy">
+      <div class="memory-text"><h2>Thank you for being you</h2><p>enna than konja naal pesikala na kuda naan unna pathi yapavume nenachitu than iruken even you have supported me in ways I won't forget. Thank you for being best part of my college memories.</p></div>
+    </div>
+    <div class="memory-row">
+      <img class="memory-img" src="5.png" alt="A joyful party with friends" loading="lazy">
+      <div class="memory-text"><h2>Your Anna is cheering for you</h2><p>Maybe we're not siblings by blood, but you're still my Thangachi by heart. No matter where life takes us, I wish the best for you.</p></div>
+    </div>
+    <div class="memory-row reverse">
+      <img class="memory-img" src="6.png" alt="A festive gathering" loading="lazy">
+      <div class="memory-text"><h2>Forever my Thangachi</h2><p>Ten days older, but forever my Thangachi! 😂 Keep smiling, keep growing, and make your life beautiful. once again, I wish you happiest bday..💫</p></div>
+    </div>
+
+    <h2 class="final-wish">Happy Birthday, Selina! ❤️</h2>
+    <p class="signature">With love, Your Anna</p>
+    <button class="btn" id="back-to-cake">Back to the celebration 🎂</button>
+  </section>
+
+  <script>
+// Birthday time: 17 November 2026 at 12:00 AM in India (IST, UTC+05:30).
+const TARGET_DATE = new Date("2026-11-17T00:00:00+05:30").getTime();
+const $ = (id) => document.getElementById(id);
+
+function showPage(id) {
+  ["page-click", "page0", "page1", "page2", "page3"].forEach(pageId => $(pageId).classList.add("hidden"));
+  $(id).classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function createStars(containerId, moving = false) {
+  const container = $(containerId);
+  if (!container || container.dataset.created) return;
+  container.dataset.created = "true";
+  for (let i = 0; i < 55; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    const size = Math.random() * 3 + 1;
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    star.style.animation = `twinkle ${2 + Math.random() * 3}s infinite alternate`;
+    star.style.animationDelay = Math.random() * 3 + "s";
+    container.appendChild(star);
+  }
+}
+
+let countdownInterval;
+
+function openNote() {
+  showPage("page0");
+  createStars("stars-page0");
+}
+
+function enterTimer() {
+  showPage("page1");
+  createStars("stars-page1", true);
+  updateTimer();
+}
+
+function updateTimer() {
+  const remaining = TARGET_DATE - Date.now();
+  if (remaining <= 0) {
+    ["days-val", "hours-val", "mins-val", "secs-val"].forEach(id => $(id).textContent = "00");
+    $("countdown-title").textContent = "It's your birthday, Selina! 🎉";
+    $("timer-caption").textContent = "Your surprise is ready. Happy Birthday! 💗";
+    clearInterval(countdownInterval);
+    if (!$("page1").classList.contains("hidden")) goToCakeRoom();
+    return;
+  }
+  const values = [
+    Math.floor(remaining / 86400000),
+    Math.floor((remaining % 86400000) / 3600000),
+    Math.floor((remaining % 3600000) / 60000),
+    Math.floor((remaining % 60000) / 1000)
+  ];
+  ["days-val", "hours-val", "mins-val", "secs-val"].forEach((id, i) => {
+    $(id).textContent = String(values[i]).padStart(2, "0");
+  });
+}
+
+function goToCakeRoom() {
+  showPage("page2");
+  $("page2").classList.add("dark-room");
+  document.body.classList.add("cake-wait");
+}
+
+function turnOnLights() {
+  $("page2").classList.remove("dark-room");
+  $("light-controls").classList.add("hidden");
+  $("party-content").classList.remove("hidden");
+  const pop = $("pop-blast");
+  pop.classList.remove("hidden");
+  pop.style.animation = "popAnim 1s ease-out forwards";
+  setTimeout(() => pop.classList.add("hidden"), 1000);
+  const audio = $("bday-audio");
+  blastConfetti();
+  startSlideshow();
+}
+
+function blastConfetti() {
+  const colors = ["#ff4d94", "#ffeb3b", "#c084fc", "#2196f3", "#ff80ab", "#9c27b0"];
+  for (let i = 0; i < 120; i++) {
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.width = Math.random() * 9 + 5 + "px";
+    confetti.style.height = Math.random() * 15 + 8 + "px";
+    confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 5200);
+  }
+}
+
+let cakeTouchCount = 0;
+function playBirthdayMusic() {
+  const audio = $("bday-audio");
+  audio.currentTime = 0;
+  audio.play().catch(() => {
+    $("music-status").textContent = "Birthday music could not play. Check your internet connection and try again.";
+  });
+}
+
+function interactCake() {
+  if (cakeTouchCount === 0) {
+    document.querySelectorAll(".flame").forEach(flame => flame.classList.add("blown-out"));
+    $("cake-msg").textContent = "Now touch the cake again to cut it! 🔪🎂";
+    cakeTouchCount = 1;
+  } else if (cakeTouchCount === 1) {
+    $("cake-container").classList.add("cut");
+    $("cake-emoji").textContent = "🍰";
+    $("candles-container").classList.add("hidden");
+    $("cake-msg").textContent = "Yay! Happy Birthday, mendally 🎉😵‍💫";
+    $("gallery-content").classList.remove("hidden");
+    $("page2").classList.remove("cake-locked");
+    document.body.classList.remove("cake-wait");
+    playBirthdayMusic();
+    cakeTouchCount = 2;
+  }
+}
+
+// Visitors can add a large number of their own photos.
+let photoUrls = [
+  "11.png",
+  "22.png",
+  "33.png",
+  "44.png",
+  "55.png",
+  "66.png"
+];
+let currentSlide = 0;
+let slideInterval = null;
+
+function renderGallery() {
+  const container = $("slideshow-container");
+  container.querySelectorAll("img").forEach(img => img.remove());
+  const placeholder = container.querySelector(".slide-placeholder");
+  if (!photoUrls.length) {
+    placeholder.classList.remove("hidden");
+    $("slide-counter").textContent = "";
+    return;
+  }
+  placeholder.classList.add("hidden");
+  const image = document.createElement("img");
+  image.src = photoUrls[currentSlide];
+  image.alt = `Birthday memory ${currentSlide + 1}`;
+  container.insertBefore(image, container.querySelector(".slide-control"));
+  $("slide-counter").textContent = `${currentSlide + 1} / ${photoUrls.length}`;
+}
+
+function startSlideshow() {
+  renderGallery();
+  if (slideInterval) clearInterval(slideInterval);
+  slideInterval = setInterval(() => {
+    if (photoUrls.length > 1) {
+      currentSlide = (currentSlide + 1) % photoUrls.length;
+      renderGallery();
+    }
+  }, 2000);
+}
+
+function moveSlide(direction) {
+  if (!photoUrls.length) return;
+  currentSlide = (currentSlide + direction + photoUrls.length) % photoUrls.length;
+  renderGallery();
+}
+
+// Reveal memory rows as the visitor scrolls.
+function checkScroll() {
+  document.querySelectorAll(".memory-row").forEach(row => {
+    if (row.getBoundingClientRect().top < window.innerHeight * 0.85) row.classList.add("visible");
+  });
+}
+
+$("welcome-card").addEventListener("click", openNote);
+$("welcome-card").addEventListener("keydown", event => {
+  if (event.key === "Enter" || event.key === " ") openNote();
+});
+$("note-next").addEventListener("click", enterTimer);
+$("secret-dot").addEventListener("click", goToCakeRoom);
+$("light-switch").addEventListener("click", turnOnLights);
+$("cake-container").addEventListener("click", interactCake);
+$("cake-container").addEventListener("keydown", event => {
+  if (event.key === "Enter" || event.key === " ") interactCake();
+});
+$("slide-prev").addEventListener("click", () => moveSlide(-1));
+$("slide-next").addEventListener("click", () => moveSlide(1));
+$("scroll-btn").addEventListener("click", () => {
+  showPage("page3");
+  checkScroll();
+});
+$("back-to-cake").addEventListener("click", () => {
+  showPage("page2");
+  $("party-content").classList.remove("hidden");
+  $("light-controls").classList.add("hidden");
+  checkScroll();
+});
+window.addEventListener("scroll", checkScroll);
+
+createStars("stars-page-click");
+updateTimer();
+countdownInterval = setInterval(updateTimer, 1000);
+
+</script>
+</body>
+</html>
